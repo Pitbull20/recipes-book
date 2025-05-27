@@ -1,6 +1,6 @@
-import { MealPreview } from '../types/meal-preview.interface';
+import { MealPreview } from '../dto/meal-preview.dto';
 import { MealFromApi } from '../types/meal-from-api.interface';
-import { NormalizedMeal } from '../types/normalized-meal.interface';
+import { NormalizedMeal } from '../dto/normalized-meal.dto';
 export function mapMealToPreview(meal: any): MealPreview {
   return {
     id: meal.idMeal,

@@ -1,9 +1,9 @@
 import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { RecipesApi } from './recipes.api';
 import GetRecipesFilterDto from './dto/get-recipes.dto';
-import { NormalizedMeal } from './types/normalized-meal.interface';
+import { NormalizedMeal } from './dto/normalized-meal.dto';
 import {mapMealToNormalized, mapMealToPreview} from "./utils/transform";
-import { MealPreview } from './types/meal-preview.interface';
+import { MealPreview } from './dto/meal-preview.dto';
 
 @Injectable()
 export class RecipesService {
