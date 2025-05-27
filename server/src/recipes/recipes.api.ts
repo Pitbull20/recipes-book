@@ -2,6 +2,7 @@ import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { firstValueFrom } from 'rxjs';
+import { MealApiResponse, MealFromApi } from './types/meal-from-api.interface';
 
 @Injectable()
 export class RecipesApi {
@@ -14,7 +15,7 @@ export class RecipesApi {
         this.baseUrl = this.config.get<string>('MEALDB_API_BASE_URL') || 'https://www.themealdb.com/api/json/v1/1';
     }
 
-    async get(path: string): Promise<any> {
+    async get(path: string): Promise<MealApiResponse> {
         const url = `${this.baseUrl}${path}`;
 
         try {
@@ -26,7 +27,7 @@ export class RecipesApi {
         }
     }
 
-    async getById(id: string): Promise<any> {
+    async getById(id: string): Promise<MealApiResponse> {
         return this.get(`/lookup.php?i=${id}`);
     }
 }

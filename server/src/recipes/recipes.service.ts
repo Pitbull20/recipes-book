@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { RecipesApi } from './recipes.api';
 import GetRecipesFilterDto from './dto/get-recipes.dto';
 import { NormalizedMeal } from './types/normalized-meal.interface';
@@ -45,4 +45,16 @@ export class RecipesService {
 
         return raw.meals.map(isPreview ? mapMealToPreview : mapMealToNormalized);
     }
+
+    async getRecipeById(id: string): Promise<NormalizedMeal> {
+        const recipe = await this.recipesApi.getById(id);
+
+        const meal = recipe.meals?.[0];
+        if (!meal) {
+            throw new NotFoundException(`Recipe with id: ${id} not found`);
+        }
+
+        return mapMealToNormalized(meal);
+    }
+
 }

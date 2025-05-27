@@ -10,3 +10,7 @@ export interface MealFromApi {
     [key: `strIngredient${number}`]: string | null;
     [key: `strMeasure${number}`]: string | null;
 }
+
+export interface MealApiResponse {
+    meals: MealFromApi[] | null;
+}
