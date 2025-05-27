@@ -1,16 +1,16 @@
 # Root-level
 node_modules/
 dist/
-.env
-.env.*.local
+#.env
+#.env.*.local
 *.log
 .DS_Store
 
 # Vite (client)
 client/node_modules/
 client/dist/
-client/.env
-client/.env.*.local
+#client/.env
+#client/.env.*.local
 
 # NestJS (server)
 server/node_modules/

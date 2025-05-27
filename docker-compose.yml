@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  server:
+    build: ./server
+    container_name: recipes-book-server
+    ports:
+      - "5000:3000"       # зовнішній 5000 → внутрішній 3000
+    environment:
+      - PORT=3000
+    networks:
+      - recipes-book-network
+
+  client:
+    build:
+      context: ./client
+      args:
+        NEXT_PUBLIC_API_URL: http://server:3000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - server
+    networks:
+      - recipes-book-network
+
+networks:
+  recipes-book-network:
+    driver: bridge
